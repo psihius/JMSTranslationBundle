@@ -24,7 +24,7 @@ use JMS\TranslationBundle\Exception\RuntimeException;
 use JMS\TranslationBundle\Model\MessageCatalogue;
 use JMS\TranslationBundle\Translation\Comparison\CatalogueComparator;
 use Psr\Log\LoggerInterface;
-use Symfony\Bundle\FrameworkBundle\Translation\Translator;
+use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Finder\Finder;
 
 /**
@@ -74,7 +74,7 @@ class Updater
     private $writer;
 
     /**
-     * @var Translator
+     * @var TranslatorInterface
      */
     private $translator;
 
@@ -83,8 +83,9 @@ class Updater
      * @param ExtractorManager $extractor
      * @param LoggerInterface $logger
      * @param FileWriter $writer
+     * @param TranslatorInterface $translator
      */
-    public function __construct(LoaderManager $loader, ExtractorManager $extractor, LoggerInterface $logger, FileWriter $writer, Translator $translator)
+    public function __construct(LoaderManager $loader, ExtractorManager $extractor, LoggerInterface $logger, FileWriter $writer, TranslatorInterface $translator)
     {
         $this->loader = $loader;
         $this->extractor = $extractor;
